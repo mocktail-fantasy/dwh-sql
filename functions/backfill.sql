@@ -60,7 +60,7 @@ BEGIN
   PERFORM import_player_data();
       
   -- combine data
-  PERFORM import_combine_data(season);
+  PERFORM import_combine_data();
 
   -- odds
   PERFORM import_odds_data();
