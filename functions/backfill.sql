@@ -4,6 +4,13 @@ DECLARE
     season INTEGER;
 BEGIN
 	
+    /*
+
+      NOTE: This script will not be ran by automatically and must be ran manually when needed.
+
+    */
+
+
 	-- play by play
 	-- weekly
   FOR season IN 1999..2022 LOOP
