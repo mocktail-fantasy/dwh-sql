@@ -1,0 +1,45 @@
+version: 0.2
+
+env:
+  secrets-manager:
+    PGHOST: DataWarehouseStackdwSecret5-Q0CZInzN2MID:host
+    PGUSER: DataWarehouseStackdwSecret5-Q0CZInzN2MID:username
+    PGPASSWORD: DataWarehouseStackdwSecret5-Q0CZInzN2MID:password
+    PGPORT: DataWarehouseStackdwSecret5-Q0CZInzN2MID:port
+    PGDATABASE: DataWarehouseStackdwSecret5-Q0CZInzN2MID:dbname
+
+phases:
+  install:
+    commands:
+      - echo Installing PostgreSQL client
+      - apt-get update -y && apt-get install -y postgresql-client
+  pre_build:
+    commands:
+      - echo Preparing to run SQL scripts
+  build:
+    commands:
+      - echo Running SQL scripts in 'functions' directory
+      - >
+          for sql_script in functions/*.sql; do
+            psql -f $sql_script
+          done
+      - echo Running SQL scripts in 'tables' directory
+      - >
+          for sql_script in tables/*.sql; do
+            psql -f $sql_script
+          done
+      - echo Running SQL scripts in 'views' directory
+      - >
+          for sql_script in views/*.sql; do
+            psql -f $sql_script
+          done
+      - echo Running SQL scripts in 'migrations' directory
+      - >
+          for sql_script in schedules/*.sql; do
+            psql -f $sql_script
+          done
+      - >
+          for sql_script in migrations/*.sql; do
+            psql -f $sql_script
+          done
+      - echo Running SQL scripts in 'schedules' directory
