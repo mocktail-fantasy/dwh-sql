@@ -63,7 +63,3 @@ BEGIN
 
 END;
 $$ LANGUAGE plpgsql;
-
-select backfill_from_s3();
-
-select * from pg_stat_activity();
