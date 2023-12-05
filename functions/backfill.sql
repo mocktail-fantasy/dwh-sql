@@ -10,7 +10,6 @@ BEGIN
 
     */
 
-
 	-- play by play
 	-- weekly
   FOR season IN 1999..2022 LOOP
