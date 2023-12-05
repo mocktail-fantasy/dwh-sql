@@ -6,7 +6,7 @@ BEGIN
        '', 
        '(format csv, header true)', 
        'nfl-data-bucket', 
-       'rushing_next_gen_stats/' || year || '.csv', 
+       'rushing_next_gen_stats/' || season || '.csv', 
        'us-east-1'
     );
 END;
