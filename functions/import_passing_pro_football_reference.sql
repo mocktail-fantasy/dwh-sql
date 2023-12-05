@@ -2,7 +2,7 @@ CREATE OR REPLACE FUNCTION import_passing_pro_football_reference_data(season INT
 RETURNS void AS $$
 BEGIN
     PERFORM aws_s3.table_import_from_s3(
-       'dev.passing_pro_football_reference', 
+       'raw.passing_pro_football_reference', 
        '', 
        '(format csv, header true)', 
        'nfl-data-bucket', 

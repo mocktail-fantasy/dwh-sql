@@ -1,8 +1,6 @@
-DROP SCHEMA IF EXISTS dev CASCADE;
+CREATE SCHEMA IF NOT EXISTS raw;
 
-CREATE SCHEMA dev;
-
-CREATE TABLE dev.play_by_play (
+CREATE TABLE IF NOT EXISTS raw.play_by_play (
 	play_id int8 NULL,
 	game_id text NULL,
 	old_game_id int8 NULL,
@@ -377,7 +375,7 @@ CREATE TABLE dev.play_by_play (
 	pass_oe float8 NULL
 );
 
-CREATE TABLE dev.players (
+CREATE TABLE IF NOT EXISTS raw.players (
 	status text NULL,
 	display_name text NULL,
 	first_name text NULL,
@@ -413,7 +411,7 @@ CREATE TABLE dev.players (
 	season float8 NULL
 );
 
-CREATE TABLE dev.weekly (
+CREATE TABLE IF NOT EXISTS raw.weekly (
     player_id text NULL,
     player_name text NULL,
     player_display_name text NULL,
@@ -468,7 +466,7 @@ CREATE TABLE dev.weekly (
     fantasy_points_ppr float8 NULL
 );
 
-CREATE TABLE dev.injuries (
+CREATE TABLE IF NOT EXISTS raw.injuries (
 	season float8 NULL,
 	game_type text NULL,
 	team text NULL,
@@ -487,7 +485,7 @@ CREATE TABLE dev.injuries (
 	date_modified timestamp NULL
 );
 
-CREATE TABLE dev.combine (
+CREATE TABLE IF NOT EXISTS raw.combine (
 	season int4 NULL,
 	draft_year float8 NULL,
 	draft_team text NULL,
@@ -508,7 +506,7 @@ CREATE TABLE dev.combine (
 	shuttle float8 NULL
 );
 
-CREATE TABLE dev.rushing_next_gen_stats (
+CREATE TABLE IF NOT EXISTS raw.rushing_next_gen_stats (
 	season int4 NULL,
 	season_type text NULL,
 	week int4 NULL,
@@ -533,7 +531,7 @@ CREATE TABLE dev.rushing_next_gen_stats (
 	player_short_name text NULL
 );
 
-CREATE TABLE dev.receiving_next_gen_stats (
+CREATE TABLE IF NOT EXISTS raw.receiving_next_gen_stats (
 	season int4 NULL,
 	season_type text NULL,
 	week int4 NULL,
@@ -559,7 +557,7 @@ CREATE TABLE dev.receiving_next_gen_stats (
 	player_short_name text NULL
 );
 
-CREATE TABLE dev.passing_next_gen_stats (
+CREATE TABLE IF NOT EXISTS raw.passing_next_gen_stats (
 	season int4 NULL,
 	season_type text NULL,
 	week int4 NULL,
@@ -591,7 +589,7 @@ CREATE TABLE dev.passing_next_gen_stats (
 	player_short_name text NULL
 );
 
-CREATE TABLE dev.depth_charts (
+CREATE TABLE IF NOT EXISTS raw.depth_charts (
 	season float8 NULL,
 	club_code text NULL,
 	week float8 NULL,
@@ -609,7 +607,7 @@ CREATE TABLE dev.depth_charts (
 	full_name text NULL
 );
 
-CREATE TABLE dev.rushing_pro_football_reference (
+CREATE TABLE IF NOT EXISTS raw.rushing_pro_football_reference (
 	game_id text NULL,
 	pfr_game_id text NULL,
 	season int4 NULL,
@@ -628,7 +626,7 @@ CREATE TABLE dev.rushing_pro_football_reference (
 	receiving_broken_tackles text NULL
 );
 
-CREATE TABLE dev.receiving_pro_football_reference (
+CREATE TABLE IF NOT EXISTS raw.receiving_pro_football_reference (
 	game_id text NULL,
 	pfr_game_id text NULL,
 	season int4 NULL,
@@ -648,7 +646,7 @@ CREATE TABLE dev.receiving_pro_football_reference (
 	receiving_rat float8 NULL
 );
 
-CREATE TABLE dev.passing_pro_football_reference (
+CREATE TABLE IF NOT EXISTS raw.passing_pro_football_reference (
 	game_id text NULL,
 	pfr_game_id text NULL,
 	season int4 NULL,
@@ -675,7 +673,7 @@ CREATE TABLE dev.passing_pro_football_reference (
 	def_times_hitqb text NULL
 );
 
-CREATE TABLE dev.snaps (
+CREATE TABLE IF NOT EXISTS raw.snaps (
 	game_id text NULL,
 	pfr_game_id text NULL,
 	season int4 NULL,
@@ -694,7 +692,7 @@ CREATE TABLE dev.snaps (
 	st_pct float8 NULL
 );
 
-CREATE TABLE dev.ftn (
+CREATE TABLE IF NOT EXISTS raw.ftn (
 	ftn_game_id int8 NULL,
 	nflverse_game_id text NULL,
 	season int8 NULL,
@@ -726,7 +724,7 @@ CREATE TABLE dev.ftn (
 	date_pulled text NULL
 );
 
-CREATE TABLE dev.rosters (
+CREATE TABLE IF NOT EXISTS raw.rosters (
 	season int8 NULL,
 	team text NULL,
 	"position" text NULL,
@@ -765,7 +763,7 @@ CREATE TABLE dev.rosters (
 	draft_number float8 NULL
 );
 
-CREATE TABLE dev.odds (
+CREATE TABLE IF NOT EXISTS raw.odds (
 	game_id text NULL,
 	season int8 NULL,
 	game_type text NULL,
@@ -814,7 +812,7 @@ CREATE TABLE dev.odds (
 	stadium text NULL
 );
 
-CREATE TABLE dev.player_ids (
+CREATE TABLE IF NOT EXISTS raw.player_ids (
 	mfl_id int8 NULL,
 	sportradar_id text NULL,
 	fantasypros_id text NULL,

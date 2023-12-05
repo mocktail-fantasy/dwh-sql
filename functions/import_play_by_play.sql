@@ -2,7 +2,7 @@ CREATE OR REPLACE FUNCTION import_play_by_play_data(season INTEGER)
 RETURNS void AS $$
 BEGIN
     PERFORM aws_s3.table_import_from_s3(
-       'dev.play_by_play', 
+       'raw.play_by_play', 
        '', 
        '(format csv, header true)', 
        'nfl-data-bucket', 
