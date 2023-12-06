@@ -18,23 +18,17 @@ phases:
       - echo Preparing to run SQL scripts
   build:
     commands:
-      - echo Running SQL scripts in 'functions' directory
-      - >
-          for sql_script in functions/*.sql; do
-            psql -f $sql_script
-          done
+      - echo Running SQL scripts in 'schemas' directory
+      - find schemas -type f -name "*.sql" -exec psql -f {} \;
+
       - echo Running SQL scripts in 'tables' directory
-      - >
-          for sql_script in tables/*.sql; do
-            psql -f $sql_script
-          done
+      - find tables -type f -name "*.sql" -exec psql -f {} \;
+
+      - echo Running SQL scripts in 'functions' directory
+      - find functions -type f -name "*.sql" -exec psql -f {} \;
+
       - echo Running SQL scripts in 'views' directory
-      - >
-          for sql_script in views/*.sql; do
-            psql -f $sql_script
-          done
+      - find views -type f -name "*.sql" -exec psql -f {} \;
+
       - echo Running SQL scripts in 'schedules' directory
-      - >
-          for sql_script in schedules/*.sql; do
-            psql -f $sql_script
-          done
+      - find schedules -type f -name "*.sql" -exec psql -f {} \;
