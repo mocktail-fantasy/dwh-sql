@@ -9,10 +9,6 @@ env:
     PGDATABASE: DataWarehouseStackDWSecret9-3cVPSMBS42E4:dbname
 
 phases:
-  install:
-    commands:
-      - echo Installing PostgreSQL client
-      - apt-get update -y && apt-get install -y postgresql-client
   pre_build:
     commands:
       - echo Preparing to run SQL scripts
