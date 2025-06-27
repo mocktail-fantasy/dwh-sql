@@ -2,11 +2,11 @@ version: 0.2
 
 env:
   secrets-manager:
-    PGHOST: DataWarehouseStackDWSecret9-LIsZAcNXfW4g:host
-    PGUSER: DataWarehouseStackDWSecret9-LIsZAcNXfW4g:username
-    PGPASSWORD: DataWarehouseStackDWSecret9-LIsZAcNXfW4g:password
-    PGPORT: DataWarehouseStackDWSecret9-LIsZAcNXfW4g:port
-    PGDATABASE: DataWarehouseStackDWSecret9-LIsZAcNXfW4g:dbname
+    PGHOST: DataWarehouseStackDWSecret9-3cVPSMBS42E4:host
+    PGUSER: DataWarehouseStackDWSecret9-3cVPSMBS42E4:username
+    PGPASSWORD: DataWarehouseStackDWSecret9-3cVPSMBS42E4:password
+    PGPORT: DataWarehouseStackDWSecret9-3cVPSMBS42E4:port
+    PGDATABASE: DataWarehouseStackDWSecret9-3cVPSMBS42E4:dbname
 
 phases:
   install:
