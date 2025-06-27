@@ -2,11 +2,11 @@ version: 0.2
 
 env:
   secrets-manager:
-    PGHOST: DataWarehouseStackMocktailD-POQCHWMrOtRV:host
-    PGUSER: DataWarehouseStackMocktailD-POQCHWMrOtRV:username
-    PGPASSWORD: DataWarehouseStackMocktailD-POQCHWMrOtRV:password
-    PGPORT: DataWarehouseStackMocktailD-POQCHWMrOtRV:port
-    PGDATABASE: DataWarehouseStackMocktailD-POQCHWMrOtRV:dbname
+    PGHOST: DataWarehouseStackDWSecret9-LIsZAcNXfW4g:host
+    PGUSER: DataWarehouseStackDWSecret9-LIsZAcNXfW4g:username
+    PGPASSWORD: DataWarehouseStackDWSecret9-LIsZAcNXfW4g:password
+    PGPORT: DataWarehouseStackDWSecret9-LIsZAcNXfW4g:port
+    PGDATABASE: DataWarehouseStackDWSecret9-LIsZAcNXfW4g:dbname
 
 phases:
   install:
