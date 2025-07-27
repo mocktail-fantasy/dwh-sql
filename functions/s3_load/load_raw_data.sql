@@ -4,6 +4,8 @@ DECLARE
     season INTEGER;
 BEGIN
 
+  CREATE EXTENSION IF NOT EXISTS aws_s3 CASCADE; 
+
 	SELECT EXTRACT(YEAR FROM NOW()) INTO season;
 
   PERFORM import_play_by_play_data(season);

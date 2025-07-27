@@ -9,6 +9,8 @@ BEGIN
       NOTE: This script will not be ran by automatically and must be ran manually when needed.
 
     */
+    
+  CREATE EXTENSION IF NOT EXISTS aws_s3 CASCADE; 
 
 	-- play by play
 	-- weekly
