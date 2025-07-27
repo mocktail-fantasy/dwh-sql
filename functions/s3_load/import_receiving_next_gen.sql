@@ -5,7 +5,7 @@ BEGIN
        'raw.receiving_next_gen_stats', 
        '', 
        '(format csv, header true)', 
-       'nfl-data-bucket', 
+       'nfl-staging-datalake', 
        'receiving_next_gen_stats/' || season || '.csv', 
        'us-east-1'
     );

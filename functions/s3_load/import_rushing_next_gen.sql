@@ -5,7 +5,7 @@ BEGIN
        'raw.rushing_next_gen_stats', 
        '', 
        '(format csv, header true)', 
-       'nfl-data-bucket', 
+       'nfl-staging-datalake', 
        'rushing_next_gen_stats/' || season || '.csv', 
        'us-east-1'
     );

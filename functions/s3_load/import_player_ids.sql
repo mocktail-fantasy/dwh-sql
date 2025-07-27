@@ -5,7 +5,7 @@ BEGIN
        'raw.player_ids', 
        '', 
        '(format csv, header true)', 
-       'nfl-data-bucket', 
+       'nfl-staging-datalake', 
        'player_ids/player_ids.csv', 
        'us-east-1'
     );

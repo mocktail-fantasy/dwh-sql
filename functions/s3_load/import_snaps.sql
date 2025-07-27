@@ -5,7 +5,7 @@ BEGIN
        'raw.snaps', 
        '', 
        '(format csv, header true)', 
-       'nfl-data-bucket', 
+       'nfl-staging-datalake', 
        'snaps/' || season || '.csv', 
        'us-east-1'
     );

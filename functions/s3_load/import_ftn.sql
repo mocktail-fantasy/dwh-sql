@@ -5,7 +5,7 @@ BEGIN
        'raw.ftn', 
        '', 
        '(format csv, header true)', 
-       'nfl-data-bucket', 
+       'nfl-staging-datalake', 
        'ftn/' || season || '.csv', 
        'us-east-1'
     );

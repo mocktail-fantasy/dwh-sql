@@ -5,7 +5,7 @@ BEGIN
        'raw.weekly', 
        '', 
        '(format csv, header true)', 
-       'nfl-data-bucket', 
+       'nfl-staging-datalake', 
        'weekly/' || season || '.csv', 
        'us-east-1'
     );

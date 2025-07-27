@@ -5,7 +5,7 @@ BEGIN
        'raw.depth_charts', 
        '', 
        '(format csv, header true)', 
-       'nfl-data-bucket', 
+       'nfl-staging-datalake', 
        'depth_charts/' || season || '.csv', 
        'us-east-1'
     );

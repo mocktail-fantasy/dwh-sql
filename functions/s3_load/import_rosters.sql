@@ -5,7 +5,7 @@ BEGIN
        'raw.rosters', 
        '', 
        '(format csv, header true)', 
-       'nfl-data-bucket', 
+       'nfl-staging-datalake', 
        'rosters/' || season || '.csv', 
        'us-east-1'
     );

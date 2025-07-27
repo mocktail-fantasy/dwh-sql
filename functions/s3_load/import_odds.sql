@@ -5,7 +5,7 @@ BEGIN
        'raw.odds', 
        '', 
        '(format csv, header true)', 
-       'nfl-data-bucket', 
+       'nfl-staging-datalake', 
        'odds/odds.csv', 
        'us-east-1'
     );

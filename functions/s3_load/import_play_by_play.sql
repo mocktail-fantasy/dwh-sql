@@ -5,7 +5,7 @@ BEGIN
        'raw.play_by_play', 
        '', 
        '(format csv, header true)', 
-       'nfl-data-bucket', 
+       'nfl-staging-datalake', 
        'play_by_play/' || season || '.csv', 
        'us-east-1'
     );

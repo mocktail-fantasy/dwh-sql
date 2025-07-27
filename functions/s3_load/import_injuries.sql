@@ -5,7 +5,7 @@ BEGIN
        'raw.injuries', 
        '', 
        '(format csv, header true)', 
-       'nfl-data-bucket', 
+       'nfl-staging-datalake', 
        'injuries/' || season || '.csv', 
        'us-east-1'
     );

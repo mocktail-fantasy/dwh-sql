@@ -5,7 +5,7 @@ BEGIN
        'raw.combine', 
        '', 
        '(format csv, header true)', 
-       'nfl-data-bucket', 
+       'nfl-staging-datalake', 
        'combine/combine.csv', 
        'us-east-1'
     );

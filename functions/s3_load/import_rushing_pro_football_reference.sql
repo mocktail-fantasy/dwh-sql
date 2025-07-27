@@ -5,7 +5,7 @@ BEGIN
        'raw.rushing_pro_football_reference', 
        '', 
        '(format csv, header true)', 
-       'nfl-data-bucket', 
+       'nfl-staging-datalake', 
        'rushing_pro_football_reference/' || season || '.csv', 
        'us-east-1'
     );
