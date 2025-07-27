@@ -420,6 +420,7 @@ CREATE TABLE IF NOT EXISTS raw.weekly (
     season int8 NULL,
     week int8 NULL,
     season_type text NULL,
+	opponent_team text NULL,
     completions int8 NULL,
     attempts int8 NULL,
     passing_yards int8 NULL,
