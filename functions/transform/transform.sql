@@ -7,6 +7,7 @@ BEGIN
     CALL load_from_s3();
     CALL insert_derived_odds();
     CALL insert_odds_by_team();
+    CALL refresh_active_rosters();
 
 
 END;
