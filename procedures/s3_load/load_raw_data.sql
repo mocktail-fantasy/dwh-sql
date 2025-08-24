@@ -11,8 +11,6 @@ BEGIN
 
   CREATE EXTENSION IF NOT EXISTS aws_s3 CASCADE;
 
-  SELECT EXTRACT(YEAR FROM NOW()) INTO season;
-
   CALL import_play_by_play_data(playing_season);
   CALL import_weekly_data(playing_season);
   CALL import_injury_data(playing_season);
