@@ -17,21 +17,22 @@ BEGIN
         RETURN;
     END;
 
-    BEGIN
-        CALL insert_derived_odds();
-        INSERT INTO etl.job_logs (procedure_name, status, message) VALUES ('insert_derived_odds', 'COMPLETED', 'Success');
-    EXCEPTION WHEN OTHERS THEN
-        GET STACKED DIAGNOSTICS log_message = MESSAGE_TEXT;
-        INSERT INTO etl.job_logs (procedure_name, status, message) VALUES ('insert_derived_odds', 'FAILED', log_message);
-    END;
+    -- TODO: Fix or Remove
+    -- BEGIN
+    --     CALL insert_derived_odds();
+    --     INSERT INTO etl.job_logs (procedure_name, status, message) VALUES ('insert_derived_odds', 'COMPLETED', 'Success');
+    -- EXCEPTION WHEN OTHERS THEN
+    --     GET STACKED DIAGNOSTICS log_message = MESSAGE_TEXT;
+    --     INSERT INTO etl.job_logs (procedure_name, status, message) VALUES ('insert_derived_odds', 'FAILED', log_message);
+    -- END;
 
-    BEGIN
-        CALL insert_odds_by_team();
-        INSERT INTO etl.job_logs (procedure_name, status, message) VALUES ('insert_odds_by_team', 'COMPLETED', 'Success');
-    EXCEPTION WHEN OTHERS THEN
-        GET STACKED DIAGNOSTICS log_message = MESSAGE_TEXT;
-        INSERT INTO etl.job_logs (procedure_name, status, message) VALUES ('insert_odds_by_team', 'FAILED', log_message);
-    END;
+    -- BEGIN
+    --     CALL insert_odds_by_team();
+    --     INSERT INTO etl.job_logs (procedure_name, status, message) VALUES ('insert_odds_by_team', 'COMPLETED', 'Success');
+    -- EXCEPTION WHEN OTHERS THEN
+    --     GET STACKED DIAGNOSTICS log_message = MESSAGE_TEXT;
+    --     INSERT INTO etl.job_logs (procedure_name, status, message) VALUES ('insert_odds_by_team', 'FAILED', log_message);
+    -- END;
 
     BEGIN
         CALL refresh_active_rosters();

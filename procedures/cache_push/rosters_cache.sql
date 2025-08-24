@@ -3,12 +3,16 @@ LANGUAGE plpgsql
 AS $$
 DECLARE
     team_record RECORD;
-    s3_uri TEXT;
+    s3_uri aws_commons._s3_uri_1;
     query_text TEXT;
 BEGIN
     FOR team_record IN SELECT DISTINCT team FROM players.active_rosters
     LOOP
-        s3_uri := 's3-uri s3://nfl-cache/rosters/' || team_record.team || '.json';
+        s3_uri := aws_commons.create_s3_uri(
+            'nfl-cache',
+            'rosters/' || team_record.team || '.json',
+            'us-east-1'
+        ); 
 
         query_text := format(
             'SELECT json_agg(t)::text FROM players.active_rosters t WHERE team = %L',

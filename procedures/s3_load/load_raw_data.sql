@@ -93,13 +93,15 @@ BEGIN
       INSERT INTO etl.job_logs (procedure_name, status, message) VALUES ('import_passing_pro_football_reference_data', 'FAILED', log_message);
   END;
 
-  BEGIN
-      CALL import_snaps_data(playing_season);
-      INSERT INTO etl.job_logs (procedure_name, status, message) VALUES ('import_snaps_data', 'COMPLETED', 'Success');
-  EXCEPTION WHEN OTHERS THEN
-      GET STACKED DIAGNOSTICS log_message = MESSAGE_TEXT;
-      INSERT INTO etl.job_logs (procedure_name, status, message) VALUES ('import_snaps_data', 'FAILED', log_message);
-  END;
+  -- TODO: Fix or Remove. 
+  --
+  -- BEGIN
+  --     CALL import_snaps_data(playing_season);
+  --     INSERT INTO etl.job_logs (procedure_name, status, message) VALUES ('import_snaps_data', 'COMPLETED', 'Success');
+  -- EXCEPTION WHEN OTHERS THEN
+  --     GET STACKED DIAGNOSTICS log_message = MESSAGE_TEXT;
+  --     INSERT INTO etl.job_logs (procedure_name, status, message) VALUES ('import_snaps_data', 'FAILED', log_message);
+  -- END;
 
   BEGIN
       CALL import_rosters_data(league_year);
@@ -126,7 +128,7 @@ BEGIN
   END;
 
   BEGIN
-      CALL import_combine_data(playing_season);
+      CALL import_combine_data();
       INSERT INTO etl.job_logs (procedure_name, status, message) VALUES ('import_combine_data', 'COMPLETED', 'Success');
   EXCEPTION WHEN OTHERS THEN
       GET STACKED DIAGNOSTICS log_message = MESSAGE_TEXT;
