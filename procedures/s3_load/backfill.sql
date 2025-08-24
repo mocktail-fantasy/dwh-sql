@@ -1,5 +1,4 @@
-CREATE OR REPLACE FUNCTION backfill_from_s3()
-RETURNS void AS $$
+CREATE OR REPLACE PROCEDURE backfill_from_s3()
 DECLARE
     season INTEGER;
 BEGIN

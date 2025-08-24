@@ -20,8 +20,8 @@ phases:
       - echo Running SQL scripts in 'tables' directory
       - find tables -type f -name "*.sql" -exec psql -f {} \;
 
-      - echo Running SQL scripts in 'functions' directory
-      - find functions -type f -name "*.sql" -exec psql -f {} \;
+      - echo Running SQL scripts in 'stored procedures' directory
+      - find procedures -type f -name "*.sql" -exec psql -f {} \;
 
       - echo Running SQL scripts in 'views' directory
       - find views -type f -name "*.sql" -exec psql -f {} \;

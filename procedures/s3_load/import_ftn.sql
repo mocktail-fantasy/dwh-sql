@@ -1,12 +1,11 @@
-CREATE OR REPLACE FUNCTION import_rosters_data(season INTEGER)
-RETURNS void AS $$
+CREATE OR REPLACE PROCEDURE import_ftn_data(season INTEGER)
 BEGIN
     PERFORM aws_s3.table_import_from_s3(
-       'raw.rosters', 
+       'raw.ftn', 
        '', 
        '(format csv, header true)', 
        'nfl-staging-datalake', 
-       'rosters/' || season || '.csv', 
+       'ftn/' || season || '.csv', 
        'us-east-1'
     );
 END;

@@ -1,12 +1,11 @@
-CREATE OR REPLACE FUNCTION import_odds_data()
-RETURNS void AS $$
+CREATE OR REPLACE PROCEDURE import_snaps_data(season INTEGER)
 BEGIN
     PERFORM aws_s3.table_import_from_s3(
-       'raw.odds', 
+       'raw.snaps', 
        '', 
        '(format csv, header true)', 
        'nfl-staging-datalake', 
-       'odds/odds.csv', 
+       'snaps/' || season || '.csv', 
        'us-east-1'
     );
 END;

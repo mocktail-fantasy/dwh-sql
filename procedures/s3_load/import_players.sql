@@ -1,12 +1,11 @@
-CREATE OR REPLACE FUNCTION import_injury_data(season INTEGER)
-RETURNS void AS $$
+CREATE OR REPLACE PROCEDURE import_player_data()
 BEGIN
     PERFORM aws_s3.table_import_from_s3(
-       'raw.injuries', 
+       'raw.players', 
        '', 
        '(format csv, header true)', 
        'nfl-staging-datalake', 
-       'injuries/' || season || '.csv', 
+       'players/players.csv', 
        'us-east-1'
     );
 END;

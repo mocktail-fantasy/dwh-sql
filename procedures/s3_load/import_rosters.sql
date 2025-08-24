@@ -1,12 +1,11 @@
-CREATE OR REPLACE FUNCTION import_depth_charts_data(season INTEGER)
-RETURNS void AS $$
+CREATE OR REPLACE PROCEDURE import_rosters_data(season INTEGER)
 BEGIN
     PERFORM aws_s3.table_import_from_s3(
-       'raw.depth_charts', 
+       'raw.rosters', 
        '', 
        '(format csv, header true)', 
        'nfl-staging-datalake', 
-       'depth_charts/' || season || '.csv', 
+       'rosters/' || season || '.csv', 
        'us-east-1'
     );
 END;

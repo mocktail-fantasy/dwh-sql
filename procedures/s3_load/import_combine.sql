@@ -1,5 +1,4 @@
-CREATE OR REPLACE FUNCTION import_combine_data()
-RETURNS void AS $$
+CREATE OR REPLACE PROCEDURE import_combine_data()
 BEGIN
     PERFORM aws_s3.table_import_from_s3(
        'raw.combine', 

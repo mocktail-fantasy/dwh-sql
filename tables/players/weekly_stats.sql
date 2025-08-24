@@ -46,7 +46,7 @@ CREATE TABLE IF NOT EXISTS players.weekly_regular_season_stats (
     PRIMARY KEY (player_id, season, week)
 );
 
-CREATE TABLE public.weekly_postseason_stats(
+CREATE TABLE IF NOT EXISTS table.weekly_postseason_stats(
     player_id VARCHAR(50),
     player_name VARCHAR(255),
     player_display_name VARCHAR(255),

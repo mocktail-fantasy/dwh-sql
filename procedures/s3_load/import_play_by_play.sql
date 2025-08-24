@@ -1,12 +1,11 @@
-CREATE OR REPLACE FUNCTION import_weekly_data(season INTEGER)
-RETURNS void AS $$
+CREATE OR REPLACE PROCEDURE import_play_by_play_data(season INTEGER)
 BEGIN
     PERFORM aws_s3.table_import_from_s3(
-       'raw.weekly', 
+       'raw.play_by_play', 
        '', 
        '(format csv, header true)', 
        'nfl-staging-datalake', 
-       'weekly/' || season || '.csv', 
+       'play_by_play/' || season || '.csv', 
        'us-east-1'
     );
 END;

@@ -1,5 +1,4 @@
-CREATE OR REPLACE FUNCTION import_rushing_pro_football_reference_data(season INTEGER)
-RETURNS void AS $$
+CREATE OR REPLACE PROCEDURE import_rushing_pro_football_reference_data(season INTEGER)
 BEGIN
     PERFORM aws_s3.table_import_from_s3(
        'raw.rushing_pro_football_reference', 
