@@ -1,11 +1,13 @@
 CREATE OR REPLACE PROCEDURE load_from_s3()
+LANGUAGE plpgsql
+AS $$
 DECLARE
     season INTEGER;
 BEGIN
 
-  CREATE EXTENSION IF NOT EXISTS aws_s3 CASCADE; 
+  CREATE EXTENSION IF NOT EXISTS aws_s3 CASCADE;
 
-	SELECT EXTRACT(YEAR FROM NOW()) INTO season;
+  SELECT EXTRACT(YEAR FROM NOW()) INTO season;
 
   CALL import_play_by_play_data(season);
   CALL import_weekly_data(season);
@@ -26,4 +28,4 @@ BEGIN
   CALL import_player_ids_data();
 
 END;
-$$ LANGUAGE plpgsql;
+$$;

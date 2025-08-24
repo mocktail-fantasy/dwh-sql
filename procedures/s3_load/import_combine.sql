@@ -1,4 +1,6 @@
 CREATE OR REPLACE PROCEDURE import_combine_data()
+LANGUAGE plpgsql
+AS $$
 BEGIN
     PERFORM aws_s3.table_import_from_s3(
        'raw.combine', 
@@ -9,4 +11,4 @@ BEGIN
        'us-east-1'
     );
 END;
-$$ LANGUAGE plpgsql;
+$$;
