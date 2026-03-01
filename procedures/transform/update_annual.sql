@@ -67,7 +67,7 @@ SELECT
     SUM(s.fantasy_points) as fantasy_points,
     SUM(s.fantasy_points_ppr) as fantasy_points_ppr
 FROM
-    players.annual_regular_season_stats s
+    players.weekly_regular_season_stats s
 GROUP BY
     s.player_id,
     s.player_name,
@@ -79,14 +79,14 @@ ELSE
 SELECT
     MAX(season) INTO current_season
 FROM
-    players.annual_regular_season_stats;
+    players.weekly_regular_season_stats;
 
-DELETE FROM players.player_stats_annual_regular_season
+DELETE FROM players.annual_regular_season_stats
 WHERE
     season = current_season;
 
 INSERT INTO
-    players.player_stats_annual_regular_season
+    players.annual_regular_season_stats
 SELECT
     s.player_id,
     s.player_name,
@@ -133,7 +133,7 @@ SELECT
     SUM(s.fantasy_points) as fantasy_points,
     SUM(s.fantasy_points_ppr) as fantasy_points_ppr
 FROM
-    players.annual_regular_season_stats s
+    players.weekly_regular_season_stats s
 WHERE
     s.season = current_season
 GROUP BY

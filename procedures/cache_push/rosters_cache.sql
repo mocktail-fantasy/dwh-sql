@@ -15,10 +15,25 @@ BEGIN
         ); 
 
         query_text := format(
-            'SELECT json_agg(t)::text FROM players.active_rosters t WHERE team = %L',
+            'SELECT json_agg(sub)::text
+             FROM (
+                 SELECT
+                     pos,
+                     jersey_number,
+                     football_name,
+                     first_name,
+                     last_name,
+                     birth_date,
+                     height_inches,
+                     weight,
+                     headshot_url,
+                     player_age
+                 FROM players.active_rosters
+                 WHERE team = %L
+             ) AS sub',
             team_record.team
         );
-
+        
         PERFORM aws_s3.query_export_to_s3(query_text, s3_uri, options :='format text');
 
     END LOOP;

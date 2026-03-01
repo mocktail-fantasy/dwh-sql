@@ -1,0 +1,5 @@
+services:
+  nfl-sync:
+    build: .
+    volumes:
+      - ./data:/app/data
