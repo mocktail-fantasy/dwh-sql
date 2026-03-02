@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS players.player_ids (
 	merge_name text NULL,
 	"position" text NULL,
 	team text NULL,
-	birthdate datetime NULL,
+	birthdate timestamp NULL,
 	age int NULL,
 	draft_year int8 NULL,
 	draft_round int8 NULL,

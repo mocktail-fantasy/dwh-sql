@@ -15,7 +15,7 @@ SELECT
         LIMIT
             1
     ) INTO table_is_empty;
-    
+
 -- If the table hasnt been populated yet then do the initial load otherwise only update current season.
 
 IF NOT table_is_empty THEN
@@ -23,9 +23,9 @@ INSERT INTO
     players.annual_regular_season_stats
 SELECT
     s.player_id,
-    s.player_name,
-    s.player_display_name,
-    s.position_group,
+    p.display_name AS player_name,
+    p.display_name AS player_display_name,
+    p.position_group,
     s.season,
     COUNT(s.week) as games_played,
     SUM(s.completions) as completions,
@@ -68,12 +68,14 @@ SELECT
     SUM(s.fantasy_points_ppr) as fantasy_points_ppr
 FROM
     players.weekly_regular_season_stats s
+JOIN raw.players p ON p.gsis_id = s.player_id
 GROUP BY
     s.player_id,
-    s.player_name,
-    s.player_display_name,
-    s.position_group,
+    p.display_name,
+    p.position_group,
     s.season;
+
+-- I know what youre thinking...but dont try it. the player display name in players.weekly_regular_season_stats is wrong
 
 ELSE
 SELECT
@@ -89,9 +91,9 @@ INSERT INTO
     players.annual_regular_season_stats
 SELECT
     s.player_id,
-    s.player_name,
-    s.player_display_name,
-    s.position_group,
+    p.display_name AS player_name,
+    p.display_name AS player_display_name,
+    p.position_group,
     s.season,
     COUNT(s.week) as games_played,
     SUM(s.completions) as completions,
@@ -134,13 +136,13 @@ SELECT
     SUM(s.fantasy_points_ppr) as fantasy_points_ppr
 FROM
     players.weekly_regular_season_stats s
+JOIN raw.players p ON p.gsis_id = s.player_id
 WHERE
     s.season = current_season
 GROUP BY
     s.player_id,
-    s.player_name,
-    s.player_display_name,
-    s.position_group,
+    p.display_name,
+    p.position_group,
     s.season;
 
 END IF;

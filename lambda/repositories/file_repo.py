@@ -1,129 +1,51 @@
-import datetime
-
 import http.client
 import ssl
 from urllib.parse import urlparse
-from enums.file_type import FileType
 
-GITHUB_HOST_NAME = 'github.com'
+NFLVERSE_HOST = "github.com"
+NFLVERSE_BASE = "/nflverse/nflverse-data/releases/download"
+
 
 class DataFileRepo:
-    def __init__(self):
-        self.this_year = int(datetime.datetime.now().year)
 
-    def get_play_by_play(self, year: int, file_extension: FileType = FileType.CSV):
-        if file_extension not in FileType:
-            raise ValueError("Invalid FileType")
+    def get_play_by_play(self, year):
+        return self._get_file(NFLVERSE_HOST, f"{NFLVERSE_BASE}/pbp/play_by_play_{year}.csv")
 
-        path = f"/nflverse/nflverse-data/releases/download/pbp/play_by_play_{year}.{file_extension.value}"  
+    def get_players(self):
+        return self._get_file(NFLVERSE_HOST, f"{NFLVERSE_BASE}/players/players.csv")
 
-        return self._get_file(GITHUB_HOST_NAME, path)
+    def get_weekly(self, year):
+        return self._get_file(NFLVERSE_HOST, f"{NFLVERSE_BASE}/stats_player/stats_player_week_{year}.csv")
 
-    def get_players(self, file_extension: FileType = FileType.CSV):
-        if file_extension not in FileType:
-            raise ValueError("Invalid FileType")
+    def get_combine(self):
+        return self._get_file(NFLVERSE_HOST, f"{NFLVERSE_BASE}/combine/combine.csv")
 
-        path = f"/nflverse/nflverse-data/releases/download/players/players.{file_extension.value}"
+    def get_ngs_rushing(self):
+        return self._get_file(NFLVERSE_HOST, f"{NFLVERSE_BASE}/nextgen_stats/ngs_rushing.csv.gz")
 
-        return self._get_file(GITHUB_HOST_NAME, path)
+    def get_ngs_passing(self):
+        return self._get_file(NFLVERSE_HOST, f"{NFLVERSE_BASE}/nextgen_stats/ngs_passing.csv.gz")
 
-    def get_weekly(self, year: int, file_extension: FileType = FileType.CSV):
-        if file_extension not in FileType:
-            raise ValueError("Invalid FileType")
+    def get_ngs_receiving(self):
+        return self._get_file(NFLVERSE_HOST, f"{NFLVERSE_BASE}/nextgen_stats/ngs_receiving.csv.gz")
 
-        path = f"/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_{year}.{file_extension.value}"  
+    def get_pfr_rushing(self, year):
+        return self._get_file(NFLVERSE_HOST, f"{NFLVERSE_BASE}/pfr_advstats/advstats_week_rush_{year}.csv")
 
-        return self._get_file(GITHUB_HOST_NAME, path)
+    def get_pfr_passing(self, year):
+        return self._get_file(NFLVERSE_HOST, f"{NFLVERSE_BASE}/pfr_advstats/advstats_week_pass_{year}.csv")
 
-    def get_combine(self, file_extension: FileType = FileType.CSV):
-        if file_extension not in FileType:
-            raise ValueError("Invalid FileType")
+    def get_pfr_receiving(self, year):
+        return self._get_file(NFLVERSE_HOST, f"{NFLVERSE_BASE}/pfr_advstats/advstats_week_rec_{year}.csv")
 
-        path = (
-            f"/nflverse/nflverse-data/releases/download/combine/combine.{file_extension.value}"
-        )
+    def get_snaps(self, year):
+        return self._get_file(NFLVERSE_HOST, f"{NFLVERSE_BASE}/snap_counts/snap_counts_{year}.csv")
 
-        return self._get_file(GITHUB_HOST_NAME, path)
+    def get_ftn(self, year):
+        return self._get_file(NFLVERSE_HOST, f"{NFLVERSE_BASE}/ftn_charting/ftn_charting_{year}.csv")
 
-    def get_ngs_rushing(self, year: int, file_extension: FileType = FileType.GZIPPED):
-        if file_extension not in FileType or file_extension == FileType.CSV:
-            raise ValueError("Invalid FileType")
-
-        path = f"/nflverse/nflverse-data/releases/download/nextgen_stats/ngs_{year}_rushing.{file_extension.value}"  
-
-        return self._get_file(GITHUB_HOST_NAME, path)
-
-    def get_ngs_passing(self, year: int, file_extension: FileType = FileType.GZIPPED):
-        if file_extension not in FileType or file_extension == FileType.CSV:
-            raise ValueError("Invalid FileType")
-
-        path = f"/nflverse/nflverse-data/releases/download/nextgen_stats/ngs_{year}_passing.{file_extension.value}"  
-
-        return self._get_file(GITHUB_HOST_NAME, path)
-
-    def get_ngs_receiving(self, year: int, file_extension: FileType = FileType.GZIPPED):
-        if file_extension not in FileType or file_extension == FileType.CSV:
-            raise ValueError("Invalid FileType")
-
-        path = f"/nflverse/nflverse-data/releases/download/nextgen_stats/ngs_{year}_receiving.{file_extension.value}"  
-
-        return self._get_file(GITHUB_HOST_NAME, path)
-
-    def get_depth_charts(self, year: int, file_extension: FileType = FileType.CSV):
-        if file_extension not in FileType:
-            raise ValueError("Invalid FileType")
-
-        path = f"/nflverse/nflverse-data/releases/download/depth_charts/depth_charts_{year}.{file_extension.value}"  
-
-        return self._get_file(GITHUB_HOST_NAME, path)
-
-    def get_pfr_receiving(self, year: int, file_extension: FileType = FileType.CSV):
-        if file_extension not in FileType:
-            raise ValueError("Invalid FileType")
-
-        path = f"/nflverse/nflverse-data/releases/download/pfr_advstats/advstats_week_rec_{year}.{file_extension.value}"  
-
-        return self._get_file(GITHUB_HOST_NAME, path)
-
-    def get_pfr_passing(self, year: int, file_extension: FileType = FileType.CSV):
-        if file_extension not in FileType:
-            raise ValueError("Invalid FileType")
-
-        path = f"/nflverse/nflverse-data/releases/download/pfr_advstats/advstats_week_pass_{year}.{file_extension.value}"  
-
-        return self._get_file(GITHUB_HOST_NAME, path)
-
-    def get_pfr_rushing(self, year: int, file_extension: FileType = FileType.CSV):
-        if file_extension not in FileType:
-            raise ValueError("Invalid FileType")
-
-        path = f"/nflverse/nflverse-data/releases/download/pfr_advstats/advstats_week_rush_{year}.{file_extension.value}"  
-
-        return self._get_file(GITHUB_HOST_NAME, path)
-
-    def get_snaps(self, year: int, file_extension: FileType = FileType.CSV):
-        if file_extension not in FileType:
-            raise ValueError("Invalid FileType")
-
-        path = f"/nflverse/nflverse-data/releases/download/snap_counts/snap_counts_{year}.{file_extension.value}"  
-
-        return self._get_file(GITHUB_HOST_NAME, path)
-
-    def get_ftn(self, year: int, file_extension: FileType = FileType.CSV):
-        if file_extension not in FileType:
-            raise ValueError("Invalid FileType")
-
-        path = f"/nflverse/nflverse-data/releases/download/ftn_charting/ftn_charting_{year}.{file_extension.value}"  
-
-        return self._get_file(GITHUB_HOST_NAME, path)
-
-    def get_weekly_rosters(self, year: int, file_extension: FileType = FileType.CSV):
-        if file_extension not in FileType:
-            raise ValueError("Invalid FileType")
-
-        path = f"/nflverse/nflverse-data/releases/download/weekly_rosters/roster_weekly_{year}.{file_extension.value}"  
-
-        return self._get_file(GITHUB_HOST_NAME, path)
+    def get_weekly_rosters(self, year):
+        return self._get_file(NFLVERSE_HOST, f"{NFLVERSE_BASE}/weekly_rosters/roster_weekly_{year}.csv")
 
     def get_game_odds(self):
         return self._get_file("nflgamedata.com", "/games.csv")
@@ -139,7 +61,6 @@ class DataFileRepo:
 
         conn = http.client.HTTPSConnection(hostname, context=ssl.create_default_context())
         conn.request("GET", path)
-
         response = conn.getresponse()
         print("Status:", response.status, response.reason)
 
@@ -147,23 +68,15 @@ class DataFileRepo:
             data = response.read()
             conn.close()
             return data
-        
+
         elif response.status == 302:
-            new_location = response.getheader('Location')
+            new_location = response.getheader("Location")
             print(f"Redirecting to {new_location}")
-
             conn.close()
-
-            # Parse the new location URL for hostname and path
             new_url = urlparse(new_location)
-            new_hostname = new_url.netloc
-            new_path = new_url.path
-            if new_url.query:
-                new_path += '?' + new_url.query
+            new_path = new_url.path + (f"?{new_url.query}" if new_url.query else "")
+            return self._get_file(new_url.netloc, new_path, max_redirects - 1)
 
-            # Recursively call _get_file with the new URL
-            return self._get_file(new_hostname, new_path, max_redirects - 1)
-        
         else:
             conn.close()
             raise Exception(f"Request failed with status: {response.status}, {response.reason}")
