@@ -66,13 +66,13 @@ BEGIN
         INSERT INTO etl.job_logs (procedure_name, status, message) VALUES ('export_rosters_to_s3', 'FAILED', log_message);
     END;
 
-    BEGIN
-        CALL export_players_to_s3();
-        INSERT INTO etl.job_logs (procedure_name, status, message) VALUES ('export_players_to_s3', 'COMPLETED', 'Success');
-    EXCEPTION WHEN OTHERS THEN
-        GET STACKED DIAGNOSTICS log_message = MESSAGE_TEXT;
-        INSERT INTO etl.job_logs (procedure_name, status, message) VALUES ('export_players_to_s3', 'FAILED', log_message);
-    END;
+    -- BEGIN
+    --     CALL export_players_to_s3();
+    --     INSERT INTO etl.job_logs (procedure_name, status, message) VALUES ('export_players_to_s3', 'COMPLETED', 'Success');
+    -- EXCEPTION WHEN OTHERS THEN
+    --     GET STACKED DIAGNOSTICS log_message = MESSAGE_TEXT;
+    --     INSERT INTO etl.job_logs (procedure_name, status, message) VALUES ('export_players_to_s3', 'FAILED', log_message);
+    -- END;
 
     INSERT INTO etl.job_logs (procedure_name, status, message)
     VALUES ('transform_raw_data', 'COMPLETED', 'Main job finished. Check individual step logs for details.');
